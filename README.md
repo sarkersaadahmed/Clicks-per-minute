@@ -1,0 +1,1 @@
+Setting up a timer [1min] and the user can click many times quickly within one minute. To make it fun, JS [more specifically NodeJS] has been used to actually save the clicks per minute so it's best when played between users [3 or 4]. Unfortunately, the name hasn't been used so it only saves the values [as in clicks per minute].
