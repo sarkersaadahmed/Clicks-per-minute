@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clicks Per Minute</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #gameArea {
+            border: 1px solid black;
+            width: 300px;
+            height: 200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Clicks Per Minute</h1>
+    <div id="gameArea">
+        <button id="clickButton">Click Me!</button>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        var clickButton = document.getElementById('clickButton');
+        var resultArea = document.getElementById('result');
+
+        var clickCount = 0;
+        var gameStartTime = null;
+
+        clickButton.addEventListener('click', function() {
+            clickCount++;
+            clickButton.innerText = 'Clicked ' + clickCount + ' times';
+        });
+
+        document.addEventListener('click', function(event) {
+            if (event.target.id !== 'clickButton') {
+                if (gameStartTime === null) {
+                    gameStartTime = Date.now();
+                }
+
+                var gameDuration = Math.floor((Date.now() - gameStartTime) / 1000);
+
+                if (gameDuration >= 60) {
+                    resultArea.innerText = 'Your score is: ' + clickCount + ' clicks per minute.';
+                    gameStartTime = null;
+                    clickCount = 0;
+                    clickButton.innerText = 'Click Me!';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
